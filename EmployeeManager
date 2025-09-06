@@ -1,0 +1,83 @@
+import java.io.*;
+import java.util.*;
+
+public class EmployeeManager {
+    private HashMap<Integer, Employee> employees = new HashMap<>();
+    private final String FILE_NAME = "employees.txt";
+
+    public EmployeeManager() {
+        loadEmployees();
+    }
+
+    // Add employee
+    public void addEmployee(Employee e) {
+        employees.put(e.getId(), e);
+        saveEmployees();
+    }
+
+    // View all employees
+    public void viewEmployees() {
+        if (employees.isEmpty()) {
+            System.out.println("No employees found.");
+            return;
+        }
+        for (Employee e : employees.values()) {
+            System.out.println(e);
+        }
+    }
+
+    // Update employee
+    public void updateEmployee(int id, String name, String role, double salary) {
+        Employee e = employees.get(id);
+        if (e != null) {
+            e.setName(name);
+            e.setRole(role);
+            e.setSalary(salary);
+            saveEmployees();
+            System.out.println("Employee updated.");
+        } else {
+            System.out.println("Employee not found.");
+        }
+    }
+
+    // Delete employee
+    public void deleteEmployee(int id) {
+        if (employees.remove(id) != null) {
+            saveEmployees();
+            System.out.println("Employee deleted.");
+        } else {
+            System.out.println("Employee not found.");
+        }
+    }
+
+    // Save to file
+    private void saveEmployees() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(FILE_NAME))) {
+            for (Employee e : employees.values()) {
+                writer.write(e.getId() + "," + e.getName() + "," + e.getRole() + "," + e.getSalary());
+                writer.newLine();
+            }
+        } catch (IOException ex) {
+            System.out.println("Error saving employees: " + ex.getMessage());
+        }
+    }
+
+    // Load from file
+    private void loadEmployees() {
+        try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data.length == 4) {
+                    int id = Integer.parseInt(data[0]);
+                    String name = data[1];
+                    String role = data[2];
+                    double salary = Double.parseDouble(data[3]);
+                    employees.put(id, new Employee(id, name, role, salary));
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("No existing employees found, starting fresh.");
+        }
+    }
+}
