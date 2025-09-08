@@ -8,7 +8,7 @@ A simple **Employee Record System** built in **Java** using:
 - **HashMap** to store employee records in memory.
 - **File I/O** to persist data (`employees.txt`).
 
-## 🚀 Features
+##  Features
 - Add new employee (ID, Name, Role, Salary)
 - View all employees
 - Update employee details
