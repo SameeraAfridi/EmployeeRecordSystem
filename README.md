@@ -1,4 +1,4 @@
-# 👨‍💼 Employee Record System (Java)
+#  Employee Record System (Java)
 
 <img width="181" height="112" alt="image" src="https://github.com/user-attachments/assets/6aa19cc6-4fb9-428e-bc16-386585deaeef" />  <img width="207" height="47" alt="image" src="https://github.com/user-attachments/assets/6dccd5c9-dc7a-4ce8-ad28-4a7e7dc81594" />
 <img width="218" height="100" alt="image" src="https://github.com/user-attachments/assets/4843d105-1a24-419e-bc41-5907abe5ed30" />
